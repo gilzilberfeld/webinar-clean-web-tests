@@ -1,5 +1,5 @@
 import { test, expect, request } from "@playwright/test";
-import { getButton, getEmail, getFirstName, getLastName, getTermsCheckbox } from "./common";
+import { getButton, getEmail, getFirstName, getLastName, getTermsCheckbox } from "../original/common";
 
 test("register process with valid data stores data correctly", async ({ page }) => {
     await page.goto("/");
