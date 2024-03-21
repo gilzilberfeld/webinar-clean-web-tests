@@ -15,11 +15,51 @@ test("startup", async ({ page }) => {
   await expect(page.getByRole("button", { name: "Register" })).toBeDisabled();
 });
 
-test("show error if one of the fields is empty", async ({ page }) => {
+
+test("validation", async ({ page }) => {
+    // Validation (partial)
+    // First / Last name
+    // Email Validation
+    // error appears
+    // error disappers
   await page.goto("/");
   await page.getByRole("checkbox", { name: "I have read the whole term sheet and agree" }).check();
+  await expect(page.getByRole("button", { name: "Register" })).toBeEnabled();
   await page.getByRole("button", { name: "Register" }).click();
   await expect(page.getByText("Please make sure all fields are filled correctly.")).toBeVisible();
+  
+  // just first name empty
+  await page.getByRole("textbox", { name: "First Name" }).fill("a");
+  await expect(page.getByText("Please make sure all fields are filled correctly.")).not.toBeVisible();
+  await page.getByRole("textbox", { name: "Last Name" }).clear();
+  await page.getByRole("textbox", { name: "Email" }).clear();
+  await page.getByRole("button", { name: "Register" }).click();
+  await expect(page.getByText("Please make sure all fields are filled correctly.")).toBeVisible();
+  
+  //just last name empty
+  await page.getByRole("textbox", { name: "First Name" }).clear()
+  await page.getByRole("textbox", { name: "Last Name" }).fill("a")
+  await expect(page.getByText("Please make sure all fields are filled correctly.")).not.toBeVisible();
+  await page.getByRole("textbox", { name: "Email" }).clear();
+  await page.getByRole("button", { name: "Register" }).click();
+  await expect(page.getByText("Please make sure all fields are filled correctly.")).toBeVisible();
+  
+  // just email empty
+  await page.getByRole("textbox", { name: "First Name" }).clear()
+  await page.getByRole("textbox", { name: "Last Name" }).clear()
+  await page.getByRole("textbox", { name: "Email" }).fill("a");
+  await expect(page.getByText("Please make sure all fields are filled correctly.")).not.toBeVisible();
+  await page.getByRole("button", { name: "Register" }).click();
+  await expect(page.getByText("Please make sure all fields are filled correctly.")).toBeVisible();
+  
+  // wrong email
+  await page.getByRole("textbox", { name: "First Name" }).fill("a")
+  await expect(page.getByText("Please make sure all fields are filled correctly.")).not.toBeVisible();
+  await page.getByRole("textbox", { name: "Last Name" }).fill("a")
+  await page.getByRole("textbox", { name: "Email" }).fill("a");
+  await page.getByRole("button", { name: "Register" }).click();
+  await expect(page.getByText("Please make sure all fields are filled correctly.")).toBeVisible();
+  
 });
 
 test("register process with valid data stores data correctly", async ({ page }) => {
