@@ -1,14 +1,5 @@
 import { test, expect, request } from "@playwright/test";
-import { getTitle } from "./locators";
-import { getFirstNameTextBox } from "./locators";
-import { getLastNameTextBox } from "./locators";
-import { getEmailTextBox } from "./locators";
-import { getPromotionsCheckBox } from "./locators";
-import { getTermsCheckBox } from "./locators";
-import { getRegisterButton } from "./locators";
-import { getErrorMessage } from "./locators";
-import { getThankYouMessage } from "./locators";
-import { getThankYouErrorMessage } from "./locators";
+import { getEmailTextBox, getErrorMessage, getFirstNameTextBox, getLastNameTextBox, getPromotionsCheckBox, getRegisterButton, getTermsCheckBox, getThankYouErrorMessage, getThankYouMessage, getTitle } from "./locators";
 
 test("startup", async ({ page }) => {
   await page.goto("/");
