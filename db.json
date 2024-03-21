@@ -1,0 +1,12 @@
+{
+  "registrants": [
+    {
+      "info": {
+        "firstName": "gil",
+        "lastName": "zilberfeld",
+        "email": "gil@testingil.com"
+      },
+      "promotions": true
+    }
+  ]
+}
