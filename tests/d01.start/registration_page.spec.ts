@@ -86,3 +86,9 @@ test("register process with valid data stores data correctly", async ({ page }) 
   const expectedEntry = { info: { firstName: "gil", lastName: "zilberfeld", email: "gil@testingil.com" }, promotions: true };
   expect(json.registrants[json.registrants.length - 1]).toStrictEqual(expectedEntry);
 });
+
+test("direct thank you page shows error", async ({ page }) => {
+    await page.goto("/thankyou");
+    await expect(page.getByText('Who Are You?')).toBeVisible();
+  });
+  
