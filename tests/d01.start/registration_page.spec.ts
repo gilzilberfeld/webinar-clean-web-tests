@@ -17,11 +17,6 @@ test("startup", async ({ page }) => {
 
 
 test("validation", async ({ page }) => {
-    // Validation (partial)
-    // First / Last name
-    // Email Validation
-    // error appears
-    // error disappers
   await page.goto("/");
   await page.getByRole("checkbox", { name: "I have read the whole term sheet and agree" }).check();
   await expect(page.getByRole("button", { name: "Register" })).toBeEnabled();
@@ -60,6 +55,18 @@ test("validation", async ({ page }) => {
   await page.getByRole("button", { name: "Register" }).click();
   await expect(page.getByText("Please make sure all fields are filled correctly.")).toBeVisible();
   
+});
+
+test("enabling and disabling the button", async ({ page }) => {
+    await page.goto("/");
+    // loads disabled
+    await expect(page.getByRole("button", { name: "Register" })).toBeDisabled();
+    // click once enables
+    await page.getByRole("checkbox", { name: "I have read the whole term sheet and agree" }).check();
+    await expect(page.getByRole("button", { name: "Register" })).toBeEnabled();
+    // click twice disables
+    await page.getByRole("checkbox", { name: "I have read the whole term sheet and agree" }).uncheck();
+    await expect(page.getByRole("button", { name: "Register" })).toBeDisabled();
 });
 
 test("register process with valid data stores data correctly", async ({ page }) => {
