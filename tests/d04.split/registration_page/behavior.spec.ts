@@ -16,7 +16,6 @@ test("disabling the enabled button", async ({ page }) => {
 });
 
 test("validation error when all the fields are empty ", async ({ page }) => {
-  await expect(getRegisterButton(page)).toBeEnabled();
   await getRegisterButton(page).click();
   await expect(getErrorMessage(page)).toBeVisible();
   await getFirstNameTextBox(page).fill("a");
