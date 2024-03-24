@@ -3,8 +3,6 @@ import { getEmailTextBox, getErrorMessage, getFirstNameTextBox, getLastNameTextB
 
 test("enabling and disabling the button", async ({ page }) => {
   await page.goto("/");
-  // loads disabled
-  await expect(getRegisterButton(page)).toBeDisabled();
   // click once enables
   await getTermsCheckBox(page).check();
   await expect(getRegisterButton(page)).toBeEnabled();

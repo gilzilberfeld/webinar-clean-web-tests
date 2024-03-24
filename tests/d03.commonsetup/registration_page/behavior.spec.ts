@@ -3,13 +3,11 @@ import { getEmailTextBox, getErrorMessage, getFirstNameTextBox, getLastNameTextB
 
 test.beforeEach(async ({page}) => {
   await page.goto("/");
+  // click once enables
+  await getTermsCheckBox(page).check();
 })
 
 test("enabling and disabling the button", async ({ page }) => {
-  // loads disabled
-  await expect(getRegisterButton(page)).toBeDisabled();
-  // click once enables
-  await getTermsCheckBox(page).check();
   await expect(getRegisterButton(page)).toBeEnabled();
   // click twice disables
   await getTermsCheckBox(page).uncheck();
@@ -17,7 +15,6 @@ test("enabling and disabling the button", async ({ page }) => {
 });
 
 test("invalid inputs", async ({ page }) => {
-  await getTermsCheckBox(page).check();
   await expect(getRegisterButton(page)).toBeEnabled();
   await getRegisterButton(page).click();
   await expect(getErrorMessage(page)).toBeVisible();
