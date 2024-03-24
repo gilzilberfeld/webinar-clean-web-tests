@@ -1,8 +1,11 @@
 import { test, expect } from "@playwright/test";
 import { getEmailTextBox, getErrorMessage, getFirstNameTextBox, getLastNameTextBox, getRegisterButton, getTermsCheckBox } from "../locators";
 
-test("enabling and disabling the button", async ({ page }) => {
+test.beforeEach(async ({page}) => {
   await page.goto("/");
+})
+
+test("enabling and disabling the button", async ({ page }) => {
   // loads disabled
   await expect(getRegisterButton(page)).toBeDisabled();
   // click once enables
@@ -14,7 +17,6 @@ test("enabling and disabling the button", async ({ page }) => {
 });
 
 test("invalid inputs", async ({ page }) => {
-  await page.goto("/");
   await getTermsCheckBox(page).check();
   await expect(getRegisterButton(page)).toBeEnabled();
   await getRegisterButton(page).click();

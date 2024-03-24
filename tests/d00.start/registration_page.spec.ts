@@ -23,7 +23,7 @@ test("validation", async ({ page }) => {
   await page.getByRole("button", { name: "Register" }).click();
   await expect(page.getByText("Please make sure all fields are filled correctly.")).toBeVisible();
   
-  // just first name empty
+  // just first name
   await page.getByRole("textbox", { name: "First Name" }).fill("a");
   await expect(page.getByText("Please make sure all fields are filled correctly.")).not.toBeVisible();
   await page.getByRole("textbox", { name: "Last Name" }).clear();
@@ -31,7 +31,7 @@ test("validation", async ({ page }) => {
   await page.getByRole("button", { name: "Register" }).click();
   await expect(page.getByText("Please make sure all fields are filled correctly.")).toBeVisible();
   
-  //just last name empty
+  //just last name
   await page.getByRole("textbox", { name: "First Name" }).clear()
   await page.getByRole("textbox", { name: "Last Name" }).fill("a")
   await expect(page.getByText("Please make sure all fields are filled correctly.")).not.toBeVisible();
@@ -39,7 +39,7 @@ test("validation", async ({ page }) => {
   await page.getByRole("button", { name: "Register" }).click();
   await expect(page.getByText("Please make sure all fields are filled correctly.")).toBeVisible();
   
-  // just email empty
+  // just email
   await page.getByRole("textbox", { name: "First Name" }).clear()
   await page.getByRole("textbox", { name: "Last Name" }).clear()
   await page.getByRole("textbox", { name: "Email" }).fill("a");
