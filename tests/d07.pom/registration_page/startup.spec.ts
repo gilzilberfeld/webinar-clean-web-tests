@@ -1,6 +1,6 @@
 import { test } from "@playwright/test";
 import { allInputsShouldBeEmpty, buttonShouldBeDisabled, promotionsBoxShouldBeChecked, shouldSeeTitle, termsBoxShouldBeUnchecked } from "../asserts";
-import { PageFactory } from "../pagefactory";
+import { PageFactory } from "../page_objects/pagefactory";
 
 test("on startup the form should be ready", async ({ page }) => {
   const registerPage = await PageFactory.createRegistrationPage(page);

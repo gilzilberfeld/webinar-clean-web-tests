@@ -1,7 +1,7 @@
 import { test } from "@playwright/test";
 import { buttonShouldBeDisabled, buttonShouldBeEnabled, errorShouldBeVisible, shouldClearError } from "../asserts";
-import { PageFactory } from "../pagefactory";
-import { RegisterPage } from "../register_page_object";
+import { PageFactory } from "../page_objects/pagefactory";
+import { RegisterPage } from "../page_objects/register_page_object";
 
 let registerPage: RegisterPage;
 

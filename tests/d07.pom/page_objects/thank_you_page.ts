@@ -1,5 +1,5 @@
 import { Locator, Page } from "@playwright/test";
-import { ANY_FIRST_NAME, THANK_YOU_PAGE } from "./consts";
+import { ANY_FIRST_NAME, THANK_YOU_PAGE } from "../consts";
 
 const THANK_YOU_ERROR = "Who Are You?";
 const THANK_YOU = "Thank you, ";

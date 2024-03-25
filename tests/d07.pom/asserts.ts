@@ -1,7 +1,7 @@
 import { expect, request } from "@playwright/test";
 import { ANY_FIRST_NAME, API_GET_ALL } from "./consts";
-import { RegisterPage } from "./register_page_object";
-import { ThankYouPage } from "./thank_you_page";
+import { RegisterPage } from "./page_objects/register_page_object";
+import { ThankYouPage } from "./page_objects/thank_you_page";
 
 export async function shouldClearError(page: RegisterPage) {
   return expect(await page.errorMsg()).not.toBeVisible();

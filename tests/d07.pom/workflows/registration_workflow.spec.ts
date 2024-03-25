@@ -1,7 +1,7 @@
 import { test } from "@playwright/test";
 import { lastSavedEntryShouldInclude, shouldDisplayThankYouWithName } from "../asserts";
 import { ANY_FIRST_NAME, ANY_LAST_NAME, ANY_VALID_EMAIL } from "../consts";
-import { PageFactory } from "../pagefactory";
+import { PageFactory } from "../page_objects/pagefactory";
 
 test("register process with valid data stores data correctly", async ({ page }) => {
   const registerPage = await PageFactory.createRegistrationPage(page);
