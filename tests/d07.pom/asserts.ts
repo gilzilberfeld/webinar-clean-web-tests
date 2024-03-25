@@ -1,6 +1,5 @@
-import { Page, expect, request } from "@playwright/test";
-import { API_GET_ALL } from "./consts";
-import { getThankYouMessage } from "./locators";
+import { expect, request } from "@playwright/test";
+import { ANY_FIRST_NAME, API_GET_ALL } from "./consts";
 import { RegisterPage } from "./register_page_object";
 import { ThankYouPage } from "./thank_you_page";
 
@@ -41,6 +40,6 @@ export async function lastSavedEntryShouldInclude(info: any, promotions: boolean
   const expectedEntry = { info, promotions };
   expect(json.registrants[json.registrants.length - 1]).toStrictEqual(expectedEntry);
 }
-export function shouldDisplayThankYouWithName(page: Page) {
-  return expect(getThankYouMessage(page)).toBeVisible();
+export async function shouldDisplayThankYouWithName(page: ThankYouPage) {
+  return expect(await page.message(ANY_FIRST_NAME)).toBeVisible();
 }

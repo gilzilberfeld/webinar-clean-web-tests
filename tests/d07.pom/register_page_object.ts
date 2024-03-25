@@ -1,5 +1,6 @@
 import { Locator, Page } from "@playwright/test";
-import { ANY_INPUT, REGISTRATION_PAGE } from "./consts";
+import { ANY_INPUT, ANY_VALID_EMAIL, REGISTRATION_PAGE } from "./consts";
+import { ThankYouPage } from "./thank_you_page";
 
 const TITLE = "Register to the magnificent Newsletter!";
 const FIRST_NAME_ID = "First Name";
@@ -11,6 +12,7 @@ const BUTTON_ID = "Register";
 const VALIDATION_MESSAGE = "Please make sure all fields are filled correctly.";
 
 export class RegisterPage {
+  
   page: Page;
   title: Locator;
   firstNameBox: Locator;
@@ -19,7 +21,7 @@ export class RegisterPage {
   promotionCheckBox: Locator;
   termsCheckBox: Locator;
   registerButton: Locator;
-  
+
   constructor(page: Page) {
     this.page = page;
   }
@@ -35,23 +37,37 @@ export class RegisterPage {
     this.registerButton = this.page.getByRole("button", { name: BUTTON_ID });
   }
 
-  typeAnythingInEmail() {
-    this.emailBox.fill(ANY_INPUT);
+  async typeInLastName(text: string) {
+    await this.lastNameBox.fill(text);
   }
-  typeAnythingInLastName() {
-    this.lastNameBox.fill(ANY_INPUT);
+  async typeInFirstName(text: string) {
+    await this.firstNameBox.fill(text);
   }
-  typeAnythingInFirstName() {
-      this.firstNameBox.fill(ANY_INPUT);
+  async typeEmail(text: string) {
+    await this.emailBox.fill(text);
   }
-  clickButton() {
-      this.registerButton.click();
+  async typeAnythingInEmail() {
+    await this.emailBox.fill(ANY_INPUT);
   }
-  uncheckTermsBox() {
-    this.termsCheckBox.uncheck();
+  async typeAnythingInLastName() {
+    await this.lastNameBox.fill(ANY_INPUT);
+  }
+  async typeAnythingInFirstName() {
+    await this.firstNameBox.fill(ANY_INPUT);
+  }
+  async clickButton(): Promise<ThankYouPage> {
+    await this.registerButton.click();
+    return new ThankYouPage(this.page);
+  }
+
+  async uncheckTermsBox() {
+    await this.termsCheckBox.uncheck();
+  }
+  async checkTermsBox() {
+    await this.termsCheckBox.check();
   }
 
   async errorMsg(): Promise<Locator> {
-    return await this.page.getByText(VALIDATION_MESSAGE);
+    return this.page.getByText(VALIDATION_MESSAGE);
   }
 }

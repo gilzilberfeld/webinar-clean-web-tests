@@ -1,5 +1,4 @@
 import { test } from "@playwright/test";
-import { checkTermsBox } from "../actions";
 import { buttonShouldBeDisabled, buttonShouldBeEnabled, errorShouldBeVisible, shouldClearError } from "../asserts";
 import { PageFactory } from "../pagefactory";
 import { RegisterPage } from "../register_page_object";
@@ -8,7 +7,7 @@ let registerPage: RegisterPage;
 
 test.beforeEach(async ({ page }) => {
   registerPage = await PageFactory.createRegistrationPage(page);
-  await checkTermsBox(registerPage);
+  await registerPage.checkTermsBox();
 });
 
 test("enabling the disabled button after checking the Terms box", async ({ page }) => {
