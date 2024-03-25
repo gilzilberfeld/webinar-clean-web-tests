@@ -1,25 +1,20 @@
 import { Page, expect, request } from "@playwright/test";
-import {
-  getErrorMessage,
-  getRegisterButton,
-  getThankYouErrorMessage,
-  getThankYouMessage,
-  // getTitle,
-} from "./locators";
 import { API_GET_ALL } from "./consts";
+import { getThankYouMessage } from "./locators";
 import { RegisterPage } from "./register_page_object";
+import { ThankYouPage } from "./thank_you_page";
 
-export function shouldClearError(page: Page) {
-  return expect(getErrorMessage(page)).not.toBeVisible();
+export async function shouldClearError(page: RegisterPage) {
+  return expect(await page.errorMsg()).not.toBeVisible();
 }
-export function errorShouldBeVisible(page: Page) {
-  return expect(getErrorMessage(page)).toBeVisible();
+export async function errorShouldBeVisible(page: RegisterPage) {
+  return expect(await page.errorMsg()).toBeVisible();
 }
 export function buttonShouldBeDisabled(page: RegisterPage) {
   return expect(page.registerButton).toBeDisabled();
 }
-export function buttonShouldBeEnabled(page: Page) {
-  return expect(getRegisterButton(page)).toBeEnabled();
+export function buttonShouldBeEnabled(page: RegisterPage) {
+  return expect(page.registerButton).toBeEnabled();
 }
 export function promotionsBoxShouldBeChecked(page: RegisterPage) {
   return expect(page.promotionCheckBox).toBeChecked();
@@ -35,8 +30,8 @@ export function shouldSeeTitle(page: RegisterPage) {
 export function termsBoxShouldBeUnchecked(page: RegisterPage) {
   return expect(page.termsCheckBox).not.toBeChecked();
 }
-export function shouldDisplayThankYouError(page: Page) {
-  return expect(getThankYouErrorMessage(page)).toBeVisible();
+export function shouldDisplayThankYouError(page: ThankYouPage) {
+  return expect(page.errorMessage).toBeVisible();
 }
 export async function lastSavedEntryShouldInclude(info: any, promotions: boolean) {
   const apiRequestContext = await request.newContext();

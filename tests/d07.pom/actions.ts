@@ -1,31 +1,21 @@
-import { Page } from "@playwright/test";
-import { getEmailTextBox, getFirstNameTextBox, getLastNameTextBox, getRegisterButton, getTermsCheckBox } from "./locators";
 import { ANY_INPUT } from "./consts";
+import { RegisterPage } from "./register_page_object";
 
-export function typeAnythingInEmail(page: Page) {
-  return getEmailTextBox(page).fill(ANY_INPUT);
+export function typeAnythingInEmail(page: RegisterPage) {
+  return page.emailBox.fill(ANY_INPUT);
 }
-export function typeAnythingInLastName(page: Page) {
-  return getLastNameTextBox(page).fill(ANY_INPUT);
+export function typeAnythingInLastName(page: RegisterPage) {
+  return page.lastNameBox.fill(ANY_INPUT);
 }
-export function typeAnythingInFirstName(page: Page) {
-  return getFirstNameTextBox(page).fill(ANY_INPUT);
+  export function checkTermsBox(page: RegisterPage) {
+  return page.termsCheckBox.check();
 }
-export function clickRegister(page: Page) {
-  return getRegisterButton(page).click();
+export function fillFirstName(page: RegisterPage, text: string) {
+  return page.firstNameBox.fill(text);
 }
-export function uncheckTermsBox(page: Page) {
-  return getTermsCheckBox(page).uncheck();
+export function fillLastName(page: RegisterPage, text: string) {
+  return page.lastNameBox.fill(text);
 }
-export function checkTermsBox(page: Page) {
-  return getTermsCheckBox(page).check();
-}
-export function fillFirstName(page: Page, text: string) {
-  return getFirstNameTextBox(page).fill(text);
-}
-export function fillLastName(page: Page, text: string) {
-  return getLastNameTextBox(page).fill(text);
-}
-export function fillEmail(page: Page, text: string) {
-  return getEmailTextBox(page).fill(text);
+export function fillEmail(page: RegisterPage, text: string) {
+  return page.emailBox.fill(text);
 }
