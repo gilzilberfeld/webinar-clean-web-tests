@@ -11,7 +11,7 @@ test("register process with valid data stores data correctly", async ({ page }) 
   await registerPage.typeInLastName(ANY_LAST_NAME)
   await registerPage.typeEmail(ANY_VALID_EMAIL)
 
-  const thankYou = await registerPage.clickButton()
+  const thankYou = await registerPage.submit()
   await shouldDisplayThankYouWithName(thankYou);
 
   await lastSavedEntryShouldInclude({ firstName: ANY_FIRST_NAME, lastName: ANY_LAST_NAME, email: ANY_VALID_EMAIL }, true);

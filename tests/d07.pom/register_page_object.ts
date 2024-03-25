@@ -1,6 +1,7 @@
 import { Locator, Page } from "@playwright/test";
 import { ANY_INPUT, ANY_VALID_EMAIL, REGISTRATION_PAGE } from "./consts";
 import { ThankYouPage } from "./thank_you_page";
+import { PageFactory } from "./pagefactory";
 
 const TITLE = "Register to the magnificent Newsletter!";
 const FIRST_NAME_ID = "First Name";
@@ -55,7 +56,12 @@ export class RegisterPage {
   async typeAnythingInFirstName() {
     await this.firstNameBox.fill(ANY_INPUT);
   }
-  async clickButton(): Promise<ThankYouPage> {
+  
+  async clickButton() {
+    await this.registerButton.click();
+  }
+
+  async submit(): Promise<ThankYouPage> {
     await this.registerButton.click();
     return new ThankYouPage(this.page);
   }

@@ -17,9 +17,9 @@ export class ThankYouPage {
     this.errorMessage = this.page.getByText(THANK_YOU_ERROR);
   }
 
-  async message(name: string): Promise<Locator> {
+  message(name: string): Locator {
     const thankYouMessage = THANK_YOU + name +'!';
-    return await this.page.getByText(thankYouMessage);
+    return this.page.getByText(thankYouMessage);
   }
   
 }
