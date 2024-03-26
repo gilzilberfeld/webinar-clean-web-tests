@@ -2,7 +2,6 @@ import { test, expect, request } from "@playwright/test";
 import { getEmailTextBox, getFirstNameTextBox, getLastNameTextBox, getRegisterButton, getTermsCheckBox, getThankYouMessage } from "../locators";
 
 test("register process with valid data stores data correctly", async ({ page }) => {
-  // reset database
   await page.goto("/");
   await getTermsCheckBox(page).check();
   await getFirstNameTextBox(page).fill("gil");

@@ -71,7 +71,6 @@ test("enabling and disabling the button", async ({ page }) => {
 });
 
 test("register process with valid data stores data correctly", async ({ page }) => {
-  // reset database
   await page.goto("/");
   await getTermsCheckBox(page).check();
   await getFirstNameTextBox(page).fill("gil");

@@ -4,7 +4,6 @@ import { lastSavedEntryShouldInclude, shouldDisplayThankYouWithName } from "../a
 import { ANY_FIRST_NAME, ANY_LAST_NAME, ANY_VALID_EMAIL, REGISTRATION_PAGE } from "../consts";
 
 test("register process with valid data stores data correctly", async ({ page }) => {
-  // reset database
   await page.goto(REGISTRATION_PAGE);
   await checkTermsBox(page);
 
