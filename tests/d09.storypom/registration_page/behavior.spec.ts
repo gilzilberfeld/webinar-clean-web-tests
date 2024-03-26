@@ -6,57 +6,58 @@ let registerPage: RegisterPage;
 
 test.beforeEach(async ({ page }) => {
   registerPage = await PageFactory.createRegistrationPage(page);
-  await registerPage.checkTermsBox();
+  await registerPage.agreeToTerms();
 });
 
 test("enabling the disabled button after checking the Terms box", async () => {
-  await registerPage.verifyButtonIsEnabled();
+  await registerPage.canSubmit();
 });
 
 test("disabling the enabled button", async () => {
-  await registerPage.uncheckTermsBox();
-  await registerPage.verifyButtonIsDisabled();
+  await registerPage.doNotAgreeToTerms();
+  await registerPage.cannotSubmit();
 });
 
 test("validation error when all the fields are empty ", async () => {
-  await registerPage.clickButton();
-  await registerPage.verifyErrorIsVisible();
+  await registerPage.registerWithInvalidData();
+  await registerPage.displaysError();
 
   await registerPage.typeAnythingInFirstName();
-  await registerPage.verifyErrorIsHidden();
+  await registerPage.hidesError();
 });
 
 test("validation error when the first name is not empty ", async () => {
   await registerPage.typeAnythingInFirstName();
-  await registerPage.clickButton();
-  await registerPage.verifyErrorIsVisible();
+  
+  await registerPage.registerWithInvalidData();
+  await registerPage.displaysError();
 
   await registerPage.typeAnythingInLastName();
-  await registerPage.verifyErrorIsHidden();
+  await registerPage.hidesError();
 });
 
 test("validation error when the last name is not empty ", async () => {
   await registerPage.typeAnythingInLastName();
-  await registerPage.clickButton();
-  await registerPage.verifyErrorIsVisible();
+  await registerPage.registerWithInvalidData();
+  await registerPage.displaysError();
 
   await registerPage.typeAnythingInFirstName();
-  await registerPage.verifyErrorIsHidden();
+  await registerPage.hidesError();
 });
 
 test("validation error when the email is not empty ", async () => {
   await registerPage.typeAnythingInEmail();
-  await registerPage.clickButton();
-  await registerPage.verifyErrorIsVisible();
+  await registerPage.registerWithInvalidData();
+  await registerPage.displaysError();
 
   await registerPage.typeAnythingInLastName();
-  await registerPage.verifyErrorIsHidden();
+  await registerPage.hidesError();
 });
 
 test("validation error when wrong email pattern", async () => {
   await registerPage.typeAnythingInFirstName();
   await registerPage.typeAnythingInLastName();
   await registerPage.typeAnythingInEmail();
-  await registerPage.clickButton();
-  await registerPage.verifyErrorIsVisible();
+  await registerPage.registerWithInvalidData();
+  await registerPage.displaysError();
 });

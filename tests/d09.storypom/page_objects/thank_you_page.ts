@@ -5,7 +5,7 @@ const THANK_YOU_ERROR = "Who Are You?";
 const THANK_YOU = "Thank you, ";
 
 export class ThankYouPage {
-  async verifyMessageDisplayedWith(name: string) {
+  async displaysThankYouWith(name: string) {
     await expect(this.message(name)).toBeVisible()
   }
   
@@ -26,7 +26,7 @@ export class ThankYouPage {
     return this.page.getByText(thankYouMessage);
   }
 
-  async verifyErrorIsVisible() {
+  async displaysError() {
     await expect(this.errorMessage).toBeVisible()
   }
 }

@@ -4,11 +4,11 @@ import { PageFactory } from "../page_objects/pagefactory";
 test("on startup the form should be ready", async ({ page }) => {
   const registerPage = await PageFactory.createRegistrationPage(page);
 
-  await registerPage.verifyTitleIsVisible()
-  await registerPage.verifyAllInputsAreEmpty()
+  await registerPage.displaysTitle()
+  await registerPage.inputsAreEmpty()
 
-  await registerPage.verifyPromotionBoxIsChecked();
-  await registerPage.verifyTermBoxIsUnchecked();
+  await registerPage.promotionsRequested();
+  await registerPage.termsNotAgreedTo();
 
-  await registerPage.verifyButtonIsDisabled()
+  await registerPage.cannotSubmit()
 });

@@ -37,13 +37,13 @@ export class RegisterPage {
     this.registerButton = this.page.getByRole("button", { name: BUTTON_ID });
   }
   
-  async typeInLastName(text: string) {
+  async lastNameIs(text: string) {
     await this.lastNameBox.fill(text);
   }
-  async typeInFirstName(text: string) {
+  async firstNameIs(text: string) {
     await this.firstNameBox.fill(text);
   }
-  async typeEmail(text: string) {
+  async emailIs(text: string) {
     await this.emailBox.fill(text);
   }
   async typeAnythingInEmail() {
@@ -56,7 +56,7 @@ export class RegisterPage {
     await this.firstNameBox.fill(ANY_INPUT);
   }
   
-  async clickButton() {
+  async registerWithInvalidData() {
     await this.registerButton.click();
   }
   
@@ -65,10 +65,10 @@ export class RegisterPage {
     return new ThankYouPage(this.page);
   }
   
-  async uncheckTermsBox() {
+  async doNotAgreeToTerms() {
     await this.termsCheckBox.uncheck();
   }
-  async checkTermsBox() {
+  async agreeToTerms() {
     await this.termsCheckBox.check();
   }
   
@@ -76,34 +76,34 @@ export class RegisterPage {
     return this.page.getByText(VALIDATION_MESSAGE);
   }
   
-  async verifyTitleIsVisible() {
+  async displaysTitle() {
     await expect(this.title).toBeVisible();
   }
   
-  async verifyTermBoxIsUnchecked() {
+  async termsNotAgreedTo() {
     await expect(this.termsCheckBox).not.toBeChecked();
   }
-  async verifyPromotionBoxIsChecked() {
+  async promotionsRequested() {
     await expect(this.promotionCheckBox).toBeChecked();
   }
-  async verifyButtonIsDisabled() {
+  async cannotSubmit() {
     await expect(this.registerButton).toBeDisabled();
   }
-  async verifyButtonIsEnabled() {
+  async canSubmit() {
     await expect(this.registerButton).toBeEnabled();
   }
 
-  async verifyAllInputsAreEmpty() {
+  async inputsAreEmpty() {
     await expect(this.firstNameBox).toBeEmpty();
     await expect(this.lastNameBox).toBeEmpty();
     await expect(this.emailBox).toBeEmpty();
   }
 
-  async verifyErrorIsHidden() {
+  async hidesError() {
     const errorMessage = await this.errorMsg();
     await expect( errorMessage).toBeHidden();
   }
-  async verifyErrorIsVisible() {
+  async displaysError() {
     const errorMessage = await this.errorMsg();
     await expect( errorMessage).toBeVisible();
   }
