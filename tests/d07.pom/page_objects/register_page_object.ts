@@ -1,7 +1,6 @@
 import { Locator, Page } from "@playwright/test";
-import { ANY_INPUT, ANY_VALID_EMAIL, REGISTRATION_PAGE } from "../consts";
+import { ANY_INPUT, REGISTRATION_PAGE } from "../consts";
 import { ThankYouPage } from "./thank_you_page";
-import { PageFactory } from "./pagefactory";
 
 const TITLE = "Register to the magnificent Newsletter!";
 const FIRST_NAME_ID = "First Name";
