@@ -24,7 +24,7 @@ test("validation error when all the fields are empty ", async ({ page }) => {
 });
 
 test("validation error when the first name is not empty ", async ({ page }) => {
-  await typeAnythingInFirstName
+  await typeAnythingInFirstName(page)
   await clickRegister(page)
   await errorShouldBeVisible(page)
   await typeAnythingInLastName(page);
@@ -32,7 +32,7 @@ test("validation error when the first name is not empty ", async ({ page }) => {
 });
 
 test("validation error when the last name is not empty ", async ({ page }) => {
-  await typeAnythingInLastName
+  await typeAnythingInLastName(page)
   await clickRegister(page)
   await errorShouldBeVisible(page)
   await typeAnythingInFirstName(page)

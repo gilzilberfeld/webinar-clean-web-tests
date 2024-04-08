@@ -1,7 +1,7 @@
 import { test } from "@playwright/test";
 import { checkTermsBox, clickRegister, fillEmail, fillFirstName, fillLastName } from "../actions";
 import { lastSavedEntryShouldInclude, shouldDisplayThankYouWithName } from "../asserts";
-import { ANY_FIRST_NAME, ANY_LAST_NAME, ANY_VALID_EMAIL as VALID_EMAIL, REGISTRATION_PAGE } from "../consts";
+import { ANY_FIRST_NAME, ANY_LAST_NAME, VALID_EMAIL as VALID_EMAIL, REGISTRATION_PAGE } from "../consts";
 
 test("register process with valid data stores data correctly", async ({ page }) => {
   await page.goto(REGISTRATION_PAGE);
