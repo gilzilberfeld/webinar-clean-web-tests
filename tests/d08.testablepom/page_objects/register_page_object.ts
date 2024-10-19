@@ -14,13 +14,13 @@ const VALIDATION_MESSAGE = "Please make sure all fields are filled correctly.";
 export class RegisterPage {
   
   page: Page;
-  title: Locator;
-  firstNameBox: Locator;
-  lastNameBox: Locator;
-  emailBox: Locator;
-  promotionCheckBox: Locator;
-  termsCheckBox: Locator;
-  registerButton: Locator;
+  title!: Locator;
+  firstNameBox!: Locator;
+  lastNameBox!: Locator;
+  emailBox!: Locator;
+  promotionCheckBox!: Locator;
+  termsCheckBox!: Locator;
+  registerButton!: Locator;
   
   constructor(page: Page) {
     this.page = page;
